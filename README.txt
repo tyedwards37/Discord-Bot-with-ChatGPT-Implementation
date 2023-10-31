@@ -8,21 +8,29 @@ Description: A Discord bot that utilizes ChatGPT to replicate a character or per
 
 Language: Python
 
-Reason: To learn how ChatGPT is implented in code, practice working with AI structures
+Reason: To learn how ChatGPT is implemented in code, practice working with AI structures
 
 Successes: Having worked with Discord bots, on the user experience end of things, I was able to figure out the programming side easier. 
 
-Setbacks: Familarizing myself with and figuring out how to mesh the two APIs (ChatGPT and Discord), proved to be the one of the hardest parts of the project.
+Setbacks: Familiarizing myself with and figuring out how to mesh the two APIs (ChatGPT and Discord), proved to be one of the hardest parts of the project.
 
-Learned: how to work with ChatGPT API, preoperly prompting an AI, how to work with Discord API
+Learned: how to work with ChatGPT API, properly prompting an AI, how to work with Discord API
 
 
 /*
-Commands:
+Command:
 python example.py
+OR 
+python bot_base.py
 
 Output:
 We have logged in as {client.user}
+
+Command:
+python ai_base.py
+
+Output:
+Say hello to [CHARACTER]!
 */
 
 Resources Used: 
