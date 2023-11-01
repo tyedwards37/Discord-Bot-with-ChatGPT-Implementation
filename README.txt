@@ -4,7 +4,7 @@ Project: Discord Bot w/ ChatGPT Implementation
 by Tyler Edwards and David Navarro
 Started October 24th, 2023
 
-Description: A Discord bot that utilizes ChatGPT to replicate a character or person given either a detailed description or set personality by the programmer. With its current implementation, the bot will respond only when it is directly mentioned using the @ feature and will only remain running if the code is actively running. The example character is Jax from "The Amazing Digital Circus."
+Description: A Discord bot that utilizes ChatGPT to replicate a character or person given either a detailed description or set personality by the programmer.  With its current implementation, the bot will respond when it is directly mentioned using the @ feature or its name is mentioned and will only remain running if the code is actively running. The example character is Jax from "The Amazing Digital Circus."
 
 Language: Python
 
