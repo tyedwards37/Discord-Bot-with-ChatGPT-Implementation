@@ -22,8 +22,9 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 
 replies = []
+name = "[NAME]"
 
-personality = "[PERSONALITY]" 
+personality = "[PERSONALITY] + [NAME]" 
 replies.append({"role": "system", "content": personality})
 context = "[CONTEXT]" 
 replies.append({"role": "system", "content": context})
@@ -37,14 +38,29 @@ async def on_message(message):
     if message.author == client.user:
         return
   
-    if client.user.mentioned_in(message):
-        message_content = message.content
-        message_author_name = message.author.name
+    else:
+        if client.user.mentioned_in(message): 
+            message_content = message.content
+            message_author_name = message.author.name
 
-        replies.append({"role": "system", "content": f"{message_author_name}: {message_content}"})
-        response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=replies)
-        bot_response = message.author.mention + " " + response["choices"][0]["message"]["content"] # NEW - @'S THE PERSON WHO MESSAGED
-        replies.append({"role": "system", "content": response["choices"][0]["message"]["content"]})
-        await message.channel.send(bot_response)
+            replies.append({"role": "user", "content": f"{message_author_name}: {message_content}"})
+            response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=replies)
+            bot_response = response["choices"][0]["message"]["content"] # NEW
+            replies.append({"role": "system", "content": bot_response})
+
+            # time.sleep(len(bot_response) / 10) # IF YOU WANT TIME BETWEEN RESPONSES
+            await message.reply(bot_response)
+
+        elif name.lower() in str(message.content).lower():
+            message_content = message.content
+            message_author_name = message.author.name
+
+            replies.append({"role": "user", "content": f"{message_author_name}: {message_content}"})
+            response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=replies)
+            bot_response = response["choices"][0]["message"]["content"] # NEW
+            replies.append({"role": "system", "content": bot_response})
+
+            # time.sleep(len(bot_response) / 10) # IF YOU WANT TIME BETWEEN RESPONSES
+            await message.reply(bot_response)
 
 client.run(TOKEN)
