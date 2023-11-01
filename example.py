@@ -39,19 +39,7 @@ async def on_message(message):
         return
     
     else:
-        if client.user.mentioned_in(message):
-            message_content = message.content
-            message_author_name = message.author.name
-
-            replies.append({"role": "user", "content": f"{message_author_name}: {message_content}"})
-            response = openai.ChatCompletion.create(model="gpt-3.5-turbo",messages=replies)
-            bot_response = response["choices"][0]["message"]["content"] # NEW
-            replies.append({"role": "system", "content": bot_response})
-
-            # time.sleep(len(bot_response) / 10) # IF YOU WANT TIME BETWEEN RESPONSES
-            await message.reply(bot_response)
-
-        elif name.lower() in str(message.content).lower():
+        if client.user.mentioned_in(message) or name.lower() in str(message.content).lower():
             message_content = message.content
             message_author_name = message.author.name
 
